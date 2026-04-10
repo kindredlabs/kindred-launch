@@ -37,7 +37,9 @@
   .date { font-family: 'Instrument Serif', serif; font-size: clamp(18px, 3.5vw, 26px); color: var(--text); margin-bottom: 36px; }
   .signup-row { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 14px; opacity: 0; transition: opacity 0.8s ease; }
   .signup-row.visible { opacity: 1; }
-  .input-group { display: flex; }
+  .input-group { display: flex; position: relative; }
+  .sally-peek { position: absolute; right: 0; bottom: 100%; height: 60px; pointer-events: none; opacity: 0; transform: translateX(50%); transition: opacity 0.4s ease, transform 0.5s ease; z-index: 10; }
+  .input-group.sally-visible .sally-peek { opacity: 1; transform: translateX(20%); }
   .input-group input { background: transparent; border: 1px solid #333; padding: 12px 18px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; width: 340px; outline: none; transition: border-color 0.3s; }
   .input-group input::placeholder { color: #444; }
   .input-group input:focus { border-color: var(--accent); }
@@ -57,7 +59,8 @@
   <div class="bottom" id="bottom">
     <div class="date">Arriving April 24, 2026</div>
     <div class="signup-row" id="signupRow">
-      <div class="input-group">
+      <div class="input-group" id="inputGroup">
+        <img src="sally.gif" class="sally-peek" alt="Sally peeking">
         <input type="email" placeholder="your email" />
         <button>Notify me</button>
       </div>
@@ -124,6 +127,11 @@ function runStep() {
   }
 }
 setTimeout(runStep, 800);
+
+const inputGroup = document.getElementById('inputGroup');
+const emailInput = inputGroup.querySelector('input');
+emailInput.addEventListener('focus', () => inputGroup.classList.add('sally-visible'));
+emailInput.addEventListener('blur', () => inputGroup.classList.remove('sally-visible'));
 </script>
 </body>
 </html>
