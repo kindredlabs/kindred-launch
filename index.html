@@ -8,9 +8,9 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root { --bg: #0a0a0a; --text: #e8e4df; --dim: #5a554f; --accent: #c9b99a; }
-  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow-x: hidden; overflow-y: auto; }
   .page { width: 100%; max-width: 800px; padding: 40px 24px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-  .lines { text-align: center; margin-bottom: 60px; min-height: 340px; display: flex; flex-direction: column; justify-content: flex-end; }
+  .lines { text-align: center; margin-bottom: 60px; min-height: clamp(200px, 40vh, 340px); display: flex; flex-direction: column; justify-content: flex-end; }
   .line { font-family: 'Instrument Serif', serif; font-size: clamp(28px, 5.5vw, 52px); line-height: 1.25; margin-bottom: 20px; opacity: 0; color: var(--text); }
   .line.visible { opacity: 1; }
   .line .cursor { display: inline-block; width: 2px; height: 0.85em; background: var(--accent); margin-left: 3px; vertical-align: text-bottom; animation: blink 0.6s step-end infinite; }
@@ -35,13 +35,13 @@
   .bottom { text-align: center; opacity: 0; transition: opacity 1s ease; }
   .bottom.visible { opacity: 1; }
   .date { font-family: 'Instrument Serif', serif; font-size: clamp(18px, 3.5vw, 26px); color: var(--text); margin-bottom: 36px; }
-  .signup-row { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 14px; opacity: 0; transition: opacity 0.8s ease; }
+  .signup-row { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 14px; width: 100%; padding: 0 10px; opacity: 0; transition: opacity 0.8s ease; }
   .signup-row.visible { opacity: 1; }
-  .input-group { display: flex; }
-  .input-wrap { position: relative; overflow: hidden; }
+  .input-group { display: flex; max-width: 100%; }
+  .input-wrap { position: relative; overflow-x: hidden; overflow-y: auto; }
   .sally-peek { position: absolute; right: 1px; top: 50%; height: 42px; pointer-events: none; opacity: 0; transform: translate(100%, -50%); transition: opacity 0.3s ease, transform 0.4s ease; z-index: 10; }
   .input-wrap.sally-visible .sally-peek { opacity: 1; transform: translate(0, -50%); }
-  .input-group input { background: transparent; border: 1px solid #333; padding: 12px 18px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; width: 340px; outline: none; transition: border-color 0.3s; }
+  .input-group input { background: transparent; border: 1px solid #333; padding: 12px 18px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; width: min(340px, 60vw); outline: none; transition: border-color 0.3s; }
   .input-group input::placeholder { color: #444; }
   .input-group input:focus { border-color: var(--accent); }
   .input-group button { background: transparent; border: 1px solid #333; border-left: none; padding: 12px 20px; color: var(--dim); font-family: 'DM Sans', sans-serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: color 0.3s, border-color 0.3s; white-space: nowrap; }
