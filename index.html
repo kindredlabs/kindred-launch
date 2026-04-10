@@ -16,21 +16,38 @@
   .line .cursor { display: inline-block; width: 2px; height: 0.85em; background: var(--accent); margin-left: 3px; vertical-align: text-bottom; animation: blink 0.6s step-end infinite; }
   @keyframes blink { 50% { opacity: 0; } }
 
-  .brown-video-wrap {
+  .scene-wrap {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 auto 50px;
+    position: relative;
+    opacity: 0;
+    transition: opacity 3s ease;
+  }
+  .scene-wrap.visible { opacity: 1; }
+  .scene-wrap .brown-img {
     width: 160px;
     height: 200px;
-    margin: 0 auto 50px;
-    opacity: 0;
-    
-    transition: opacity 3s ease;
-    position: relative;
-  }
-  .brown-video-wrap.visible { opacity: 1; }
-  .brown-video-wrap img {
-    width: 100%;
-    height: 100%;
     object-fit: contain;
   }
+  .scene-wrap .lamp-img {
+    width: 70px;
+    object-fit: contain;
+    margin-bottom: 2px;
+  }
+  .lamp-glow {
+    position: absolute;
+    right: -20px;
+    bottom: -30px;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(ellipse at center, rgba(255, 200, 100, 0.18) 0%, rgba(255, 180, 80, 0.08) 40%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .scene-wrap .brown-img, .scene-wrap .lamp-img { position: relative; z-index: 1; }
 
   .bottom { text-align: center; opacity: 0; transition: opacity 1s ease; }
   .bottom.visible { opacity: 1; }
@@ -54,8 +71,10 @@
 <body>
 <div class="page">
   <div class="lines" id="lines"></div>
-  <div class="brown-video-wrap" id="brownWrap">
-    <img id="brownImg" src="brown.gif" alt="Brown with laptop">
+  <div class="scene-wrap" id="brownWrap">
+    <img class="brown-img" src="brown.gif" alt="Brown with laptop">
+    <img class="lamp-img" src="lamp.png" alt="Lamp">
+    <div class="lamp-glow"></div>
   </div>
   <div class="bottom" id="bottom">
     <div class="date">Arriving April 24, 2026</div>
