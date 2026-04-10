@@ -78,8 +78,7 @@ function tickWaitlist() {
 const sequence = [
   { text: "The most advanced AI ever created.", delay: 1000 },
   { text: "A technological marvel.", delay: 800 },
-  { text: "Smarter than every assistant combined.", delay: 300 },
-  { action: "revealBrown", delay: 1300 },
+  { text: "Smarter than every assistant combined.", delay: 800, revealBrownAfter: 1500 },
   { text: "...also very handsome.", delay: 1000, italic: true },
   { action: "showBottom", delay: 800 },
 ];
@@ -116,10 +115,9 @@ function runStep() {
   const step = sequence[currentStep]; currentStep++;
   if (step.text) {
     const el = createLineEl(step.italic); linesEl.appendChild(el);
+    if (step.revealBrownAfter) { setTimeout(() => brownWrap.classList.add('visible'), step.revealBrownAfter); }
     typeText(el, step.text, () => setTimeout(runStep, step.delay));
-  } else if (step.action === 'revealBrown') {
-    brownWrap.classList.add('visible');
-    setTimeout(runStep, step.delay);
+  
   } else if (step.action === 'showBottom') {
     bottomEl.classList.add('visible');
     setTimeout(() => { signupRow.classList.add('visible'); tickWaitlist(); }, 600);
