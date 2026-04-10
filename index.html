@@ -32,29 +32,23 @@
     height: 200px;
     object-fit: contain;
   }
-  .scene-wrap .lamp-img {
-    width: 175px;
-    object-fit: contain;
-    margin-bottom: -20px;
-  }
   .lamp-glow {
     position: absolute;
-    right: -80px;
-    bottom: -80px;
+    left: 50%;
+    top: 50%;
     width: 200px;
     height: 200px;
+    transform: translate(-50%, -50%);
     background: radial-gradient(ellipse at center, rgba(255, 200, 100, 0.25) 0%, rgba(255, 185, 80, 0.12) 30%, rgba(255, 170, 60, 0.05) 55%, transparent 75%);
     pointer-events: none;
     z-index: 0;
-    transition: width 4s ease, height 4s ease, right 4s ease, bottom 4s ease;
+    transition: width 4s ease, height 4s ease;
   }
   .scene-wrap.visible .lamp-glow {
     width: 600px;
     height: 600px;
-    right: -240px;
-    bottom: -220px;
   }
-  .scene-wrap .brown-img, .scene-wrap .lamp-img { position: relative; z-index: 1; }
+  .scene-wrap .brown-img { position: relative; z-index: 1; }
 
   .bottom { text-align: center; opacity: 0; transition: opacity 1s ease; }
   .bottom.visible { opacity: 1; }
@@ -80,7 +74,6 @@
   <div class="lines" id="lines"></div>
   <div class="scene-wrap" id="brownWrap">
     <img class="brown-img" src="brown.gif" alt="Brown with laptop">
-    <img class="lamp-img" src="lamp.png" alt="Lamp">
     <div class="lamp-glow"></div>
   </div>
   <div class="bottom" id="bottom">
